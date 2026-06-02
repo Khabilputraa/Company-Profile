@@ -77,7 +77,7 @@ Terima kasih.`;
             Hubungi Kami
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Siap Memulai Transformasi Digital?
+            Kami Ingin Mendegar dari Anda?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Isi formulir di bawah dan pesan Anda akan langsung terkirim ke WhatsApp kami.
