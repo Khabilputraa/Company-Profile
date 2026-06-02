@@ -29,7 +29,7 @@ const erpColumns = [
   { key: 'sap', name: 'SAP Business One', highlighted: false },
   { key: 'oracle', name: 'Oracle NetSuite', highlighted: false },
   { key: 'dynamics', name: 'Microsoft Dynamics', highlighted: false },
-  { key: 'erpnext', name: 'ERPNext + IMOGI', highlighted: true },
+  { key: 'erpnext', name: 'ERPNext', highlighted: true },
 ] as const;
 
 type ErpKey = typeof erpColumns[number]['key'];

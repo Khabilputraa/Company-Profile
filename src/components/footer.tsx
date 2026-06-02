@@ -53,9 +53,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-imogi-secondary flex items-center justify-center">
-                <span className="text-white font-bold text-lg">I</span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="IMOGI Logo"
+                className="h-9 w-auto"
+              />
               <div>
                 <div className="font-bold text-lg text-white">IMOGI</div>
                 <div className="text-[10px] text-white/50">PT. Inovasi Terbaik Bangsa</div>
@@ -95,7 +97,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-white/40">
-            © {new Date().getFullYear()} PT. Inovasi Terbaik Bangsa. Hak cipta dilindungi.
+            © {new Date().getFullYear()} Imogi Indonesia. Hak cipta dilindungi.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm text-white/40 hover:text-white/70 transition-colors">

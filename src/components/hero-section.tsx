@@ -4,20 +4,24 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ChevronRight, Play, Monitor, ShieldCheck, Globe } from 'lucide-react';
+import { Monitor, ShieldCheck, Globe } from 'lucide-react';
+
 
 const slides = [
   {
     headline: 'Fleet Management Cerdas & Otomatis',
     subtitle: 'Monitoring armada secara real-time, kontrol BBM, dispatch otomatis, dan maintenance reminder — semua dalam satu platform ERPNext.',
+    image: '/hero-fleet.png',
   },
   {
     headline: 'Manajemen Proyek Konstruksi Terintegrasi',
     subtitle: 'Dari perencanaan RAB, penjadwalan, pengadaan material, hingga progress claim dan billing — terhubung tanpa celah.',
+    image: '/hero-konstruksi.png',
   },
   {
     headline: 'Operasional Bengkel Digital & Efisien',
     subtitle: 'Antrian digital, inventory suku cadang, manajemen mekanik, dan billing otomatis untuk bengkel modern.',
+    image: '/hero-bengkel.png',
   },
 ];
 
@@ -42,18 +46,33 @@ export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)' }}
+      className="relative h-[85vh] pt-[72px] overflow-hidden"
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 dot-grid opacity-30" />
+      {/* Background Image - Berganti per slide */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
+        >
+          <img
+            src={slides[current].image}
+            alt={slides[current].headline}
+            className="w-full h-full object-cover"
+          />
+          {/* Gradient overlay gelap dari kiri */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/60 to-slate-900/30" />
+          {/* Gradient overlay gelap dari bawah */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-slate-900/20" />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Decorative elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-imogi-secondary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-imogi-accent/5 rounded-full blur-3xl" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 md:pt-32 md:pb-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
           {/* Left Content */}
           <div className="text-center lg:text-left">
             {/* Badges */}
@@ -109,22 +128,12 @@ export default function HeroSection() {
                 className="bg-imogi-secondary hover:bg-imogi-secondary/90 text-white gap-2 h-12 px-6"
                 asChild
               >
-                <a href="#kontak">
-                  Demo Gratis
-                  <ChevronRight className="w-4 h-4" />
+                <a href="https://wa.me/6285311552401" target="_blank" rel="noopener noreferrer">
+                  Konsultasi Sekarang
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
                 </a>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 gap-2 h-12 px-6"
-                asChild
-              >
-                <a href="#layanan">
-                  <Play className="w-4 h-4" />
-                  Lihat Demo
-                </a>
-              </Button>
+
             </div>
 
             {/* Carousel Dots */}
@@ -133,90 +142,18 @@ export default function HeroSection() {
                 <button
                   key={idx}
                   onClick={() => setCurrent(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    idx === current
-                      ? 'w-8 bg-imogi-secondary'
-                      : 'w-2 bg-white/30 hover:bg-white/50'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${idx === current
+                    ? 'w-8 bg-imogi-secondary'
+                    : 'w-2 bg-white/30 hover:bg-white/50'
+                    }`}
                   aria-label={`Slide ${idx + 1}`}
                 />
               ))}
             </div>
           </div>
 
-          {/* Right - Dashboard Illustration */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative">
-              {/* Main dashboard card */}
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-2xl">
-                {/* Top bar */}
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                  <div className="ml-4 h-6 bg-white/10 rounded flex-1" />
-                </div>
-                {/* Dashboard content mock */}
-                <div className="space-y-3">
-                  <div className="grid grid-cols-3 gap-3">
-                    {[
-                      { label: 'Armada Aktif', value: '48', color: 'bg-imogi-secondary' },
-                      { label: 'Dalam Perjalanan', value: '32', color: 'bg-imogi-accent' },
-                      { label: 'Maintenance', value: '5', color: 'bg-amber-500' },
-                    ].map((stat) => (
-                      <div key={stat.label} className="bg-white/5 rounded-lg p-3">
-                        <div className={`w-8 h-1 ${stat.color} rounded mb-2`} />
-                        <div className="text-2xl font-bold text-white">{stat.value}</div>
-                        <div className="text-xs text-white/50">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Chart mock */}
-                  <div className="bg-white/5 rounded-lg p-4">
-                    <div className="text-xs text-white/50 mb-3">Utilisasi Armada</div>
-                    <div className="flex items-end gap-1 h-20">
-                      {[40, 65, 45, 80, 55, 70, 90, 60, 75, 85, 50, 95].map((h, i) => (
-                        <div
-                          key={i}
-                          className="flex-1 bg-imogi-secondary/60 rounded-t hover:bg-imogi-secondary transition-colors"
-                          style={{ height: `${h}%` }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  {/* Map mock */}
-                  <div className="bg-white/5 rounded-lg p-4">
-                    <div className="text-xs text-white/50 mb-2">Live Tracking</div>
-                    <div className="h-16 bg-imogi-secondary/10 rounded flex items-center justify-center">
-                      <Globe className="w-8 h-8 text-imogi-accent/50" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating notification */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-4 -right-4 bg-white/15 backdrop-blur-md border border-white/20 rounded-xl p-3 shadow-lg"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <ShieldCheck className="w-4 h-4 text-green-400" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-medium text-white">Data Terjamin</div>
-                    <div className="text-[10px] text-white/50">Enkripsi end-to-end</div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+          {/* Right - Kosong, biar gambar background kelihatan */}
+          <div className="hidden lg:block" />
         </div>
       </div>
     </section>

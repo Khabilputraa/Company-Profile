@@ -37,19 +37,8 @@ export default function CtaSection() {
               asChild
             >
               <a href="#kontak">
-                <CalendarCheck className="w-5 h-5" />
-                Jadwalkan Demo
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 gap-2 h-13 px-8 text-base"
-              asChild
-            >
-              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
-                WhatsApp Langsung
+                Konsultasi Sekarang
               </a>
             </Button>
           </div>

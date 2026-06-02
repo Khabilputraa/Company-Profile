@@ -34,7 +34,7 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'glass border-b border-border/50 shadow-sm'
+          ? 'bg-imogi-primary/90 backdrop-blur-md border-b border-white/10 shadow-lg'
           : 'bg-transparent'
       }`}
     >
@@ -42,14 +42,16 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#beranda" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-lg bg-imogi-secondary flex items-center justify-center">
-              <span className="text-white font-bold text-lg">I</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="IMOGI Logo"
+              className="h-9 w-auto"
+            />
             <div className="flex flex-col">
-              <span className="font-bold text-lg leading-tight text-foreground group-hover:text-imogi-secondary transition-colors">
+              <span className="font-bold text-lg leading-tight text-white group-hover:text-imogi-accent transition-colors">
                 IMOGI
               </span>
-              <span className="text-[10px] text-muted-foreground leading-tight hidden sm:block">
+              <span className="text-[10px] text-white/70 leading-tight hidden sm:block">
                 PT. Inovasi Terbaik Bangsa
               </span>
             </div>
@@ -61,7 +63,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/10 rounded-md transition-colors"
+                className="px-3 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors"
               >
                 {link.label}
               </a>
@@ -84,7 +86,7 @@ export default function Navbar() {
           {/* Mobile Menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="text-white/80 hover:text-white">
                 <Menu className="w-5 h-5" />
               </Button>
             </SheetTrigger>

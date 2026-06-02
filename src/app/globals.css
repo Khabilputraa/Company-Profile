@@ -161,3 +161,38 @@
   background-image: radial-gradient(circle, oklch(0.75 0.15 220 / 10%) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+/* Marquee animation */
+.marquee-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+.marquee-card {
+  width: 300px;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* Testimonials carousel */
+.testimonials-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s ease-in-out;
+}
+.testimonials-card {
+  flex-shrink: 0;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .testimonials-card { width: 50%; }
+}
+@media (min-width: 1024px) {
+  .testimonials-card { width: 33.333%; }
+}

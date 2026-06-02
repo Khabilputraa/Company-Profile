@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 
 type Category = 'Semua' | 'Proses' | 'Biaya' | 'Teknis' | 'Garansi';
 
@@ -18,102 +17,62 @@ const categories: Category[] = ['Semua', 'Proses', 'Biaya', 'Teknis', 'Garansi']
 const faqItems: FaqItem[] = [
   {
     question: 'Implementasi butuh berapa lama?',
-    answer: 'Rata-rata implementasi membutuhkan 8-10 minggu, tergantung kompleksitas kustomisasi dan kesiapan data. Kami akan memberikan timeline detail setelah tahap konsultasi.',
+    answer: 'Rata-rata 8-10 minggu, tergantung kompleksitas kustomisasi dan kesiapan data.',
     category: 'Proses',
   },
   {
     question: 'Data lama bisa dipindah?',
-    answer: 'Ya, kami menyediakan layanan data migration untuk memindahkan data dari sistem lama Anda ke ERPNext. Termasuk data master, transaksi historis, dan dokumen pendukung.',
+    answer: 'Ya, kami menyediakan layanan data migration termasuk data master, transaksi historis, dan dokumen pendukung.',
     category: 'Proses',
   },
   {
     question: 'Karyawan gaptek bisa pakai?',
-    answer: 'Tentu! ERPNext memiliki antarmuka yang intuitif dan user-friendly. Kami juga menyediakan training intensif dan dokumentasi panduan penggunaan untuk semua level pengguna.',
-    category: 'Proses',
-  },
-  {
-    question: 'Gimana cara pantau progress?',
-    answer: 'Anda akan mendapat akses ke dashboard project monitoring yang real-time. Selain itu, kami juga mengadakan weekly progress meeting dan menyediakan laporan berkala.',
-    category: 'Proses',
-  },
-  {
-    question: 'Banyak cabang bisa handle?',
-    answer: 'Ya, ERPNext mendukung multi-branch dan multi-company. Setiap cabang bisa memiliki konfigurasi sendiri sambil tetap terintegrasi di bawah satu sistem.',
-    category: 'Proses',
-  },
-  {
-    question: 'Kebutuhan berubah bisa disesuaikan?',
-    answer: 'Karena berbasis open source, ERPNext sangat fleksibel untuk dikustomisasi. Perubahan kebutuhan bisnis dapat diakomodasi melalui custom development.',
+    answer: 'Tentu! ERPNext intuitif dan user-friendly. Kami juga menyediakan training intensif dan dokumentasi.',
     category: 'Proses',
   },
   {
     question: 'Ada biaya lisensi?',
-    answer: 'Tidak ada! ERPNext adalah platform open source sehingga tidak ada biaya lisensi per user maupun tahunan. Anda hanya membayar biaya implementasi dan support opsional.',
+    answer: 'Tidak ada! ERPNext open source, tidak ada biaya lisensi per user maupun tahunan.',
     category: 'Biaya',
   },
   {
     question: 'Cocok untuk UMKM?',
-    answer: 'Sangat cocok! Tanpa biaya lisensi dan dengan biaya implementasi yang terjangkau, ERPNext + IMOGI menjadi solusi ERP yang ideal untuk UMKM yang ingin digitalisasi tanpa investasi besar.',
+    answer: 'Sangat cocok! Tanpa biaya lisensi dan implementasi terjangkau, ideal untuk UMKM.',
     category: 'Biaya',
   },
   {
     question: 'Berapa investasi implementasi?',
-    answer: 'Investasi bervariasi tergantung lingkup dan kompleksitas. Kami menawarkan paket yang kompetitif dimulai dari puluhan juta rupiah. Hubungi kami untuk konsultasi dan penawaran detail.',
-    category: 'Biaya',
-  },
-  {
-    question: 'Minimal berapa user?',
-    answer: 'Tidak ada batasan minimal user karena ERPNext bersifat open source. Anda bisa menambah user tanpa biaya tambahan, baik 5 user maupun 500 user.',
-    category: 'Biaya',
-  },
-  {
-    question: 'Kalo berhenti datanya gimana?',
-    answer: 'Data 100% milik Anda. Karena open source, Anda bisa export semua data kapan saja. Tidak ada vendor lock-in — Anda bebas menggunakan data sesuai kebutuhan.',
+    answer: 'Bervariasi tergantung lingkup. Dimulai dari puluhan juta rupiah. Hubungi kami untuk penawaran detail.',
     category: 'Biaya',
   },
   {
     question: 'Bisa integrasi dengan sistem lama?',
-    answer: 'Ya, ERPNext menyediakan REST API yang lengkap untuk integrasi dengan sistem lain. Kami juga bisa membangun custom integration sesuai kebutuhan Anda.',
+    answer: 'Ya, ERPNext menyediakan REST API lengkap. Kami juga bisa membangun custom integration.',
     category: 'Teknis',
   },
   {
     question: 'Bisa akses dari HP?',
-    answer: 'Ya, ERPNext memiliki antarmuka responsif yang bisa diakses dari browser HP. Kami juga bisa mengembangkan mobile app khusus jika diperlukan.',
+    answer: 'Ya, antarmuka responsif yang bisa diakses dari browser HP. Mobile app khusus juga bisa dikembangkan.',
     category: 'Teknis',
   },
   {
     question: 'Data aman?',
-    answer: 'Keamanan data adalah prioritas kami. ERPNext menggunakan enkripsi end-to-end, role-based access control, dan audit trail. Server bisa di-host on-premise atau cloud dengan standar keamanan tinggi.',
-    category: 'Teknis',
-  },
-  {
-    question: 'Backup dan disaster recovery?',
-    answer: 'Kami menyiapkan automated backup harian dan disaster recovery plan. Data disimpan di multiple location untuk memastikan ketersediaan dan keamanan data Anda.',
-    category: 'Teknis',
-  },
-  {
-    question: 'Bisa request fitur custom?',
-    answer: 'Tentu! Itu keunggulan utama open source. Tim developer kami bisa membangun fitur custom yang spesifik untuk kebutuhan bisnis Anda.',
-    category: 'Teknis',
-  },
-  {
-    question: 'Bedanya apa sama implementor lain?',
-    answer: 'IMOGI fokus pada 3 industri spesifik (Konstruksi, Fleet, Bengkel) dengan solusi yang sudah proven. Kami bukan sekadar menginstal software, tapi membangun solusi yang benar-benar sesuai proses bisnis Anda.',
+    answer: 'ERPNext menggunakan enkripsi end-to-end, role-based access control, dan audit trail.',
     category: 'Teknis',
   },
   {
     question: 'Kalo ada bug siapa tanggung?',
-    answer: 'Tim IMOGI bertanggung jawab atas bug yang muncul. Selama masa support, kami akan memperbaiki bug tanpa biaya tambahan. Response time maksimal 24 jam untuk bug kritis.',
+    answer: 'Tim IMOGI bertanggung jawab. Selama masa support, perbaikan bug tanpa biaya tambahan.',
     category: 'Garansi',
   },
   {
     question: 'Ada jaminan berhasil?',
-    answer: 'Kami memiliki track record 100% Go-Live rate. Jika dalam proses implementasi terkendala, kami akan bekerja sama sampai sistem berjalan sesuai kesepakatan.',
+    answer: 'Track record 100% Go-Live rate. Kami bekerja sama sampai sistem berjalan sesuai kesepakatan.',
     category: 'Garansi',
   },
   {
     question: 'Tim IT dikasih training?',
-    answer: 'Ya, kami menyediakan training komprehensif untuk tim IT internal Anda, termasuk administrasi sistem, troubleshooting, dan custom development dasar. Training bisa dilakukan on-site atau online.',
+    answer: 'Ya, training komprehensif termasuk administrasi sistem, troubleshooting, dan custom development dasar.',
     category: 'Garansi',
   },
 ];
@@ -128,25 +87,18 @@ function FaqAccordionItem({
   onToggle: () => void;
 }) {
   return (
-    <div className="border border-border rounded-xl overflow-hidden">
+    <div className={`border rounded-xl overflow-hidden transition-colors ${isOpen ? 'border-imogi-secondary/30 bg-imogi-secondary/5' : 'border-border'}`}>
       <button
         onClick={onToggle}
-        className="w-full flex items-start gap-4 p-5 text-left hover:bg-muted/50 transition-colors"
+        className="w-full flex items-center gap-3 p-4 text-left hover:bg-muted/30 transition-colors"
       >
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <Badge variant="outline" className="text-[10px] px-1.5 py-0">
-              {item.category}
-            </Badge>
-          </div>
-          <span className="text-sm font-medium text-foreground">{item.question}</span>
-        </div>
+        <span className="text-sm font-medium text-foreground flex-1">{item.question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
-          className="shrink-0 mt-1"
+          className="shrink-0"
         >
-          <ChevronDown className="w-5 h-5 text-muted-foreground" />
+          <ChevronDown className={`w-4 h-4 transition-colors ${isOpen ? 'text-imogi-secondary' : 'text-muted-foreground'}`} />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -155,10 +107,10 @@ function FaqAccordionItem({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-5 pb-5 pt-0">
+            <div className="px-4 pb-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {item.answer}
               </p>
@@ -190,9 +142,14 @@ export default function FaqSection() {
     });
   };
 
+  // Split into 2 columns
+  const midPoint = Math.ceil(filteredItems.length / 2);
+  const leftItems = filteredItems.slice(0, midPoint);
+  const rightItems = filteredItems.slice(midPoint);
+
   return (
     <section id="faq" className="py-20 md:py-28">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -234,28 +191,40 @@ export default function FaqSection() {
           ))}
         </motion.div>
 
-        {/* FAQ Items */}
-        <div className="space-y-3">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-3"
-            >
-              {filteredItems.map((item, idx) => (
+        {/* FAQ Items - 2 Columns */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-3"
+          >
+            {/* Left Column */}
+            <div className="space-y-3">
+              {leftItems.map((item, idx) => (
                 <FaqAccordionItem
-                  key={`${activeCategory}-${idx}`}
+                  key={`l-${activeCategory}-${idx}`}
                   item={item}
                   isOpen={openItems.has(idx)}
                   onToggle={() => toggleItem(idx)}
                 />
               ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+            </div>
+            {/* Right Column */}
+            <div className="space-y-3">
+              {rightItems.map((item, idx) => (
+                <FaqAccordionItem
+                  key={`r-${activeCategory}-${idx}`}
+                  item={item}
+                  isOpen={openItems.has(midPoint + idx)}
+                  onToggle={() => toggleItem(midPoint + idx)}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
