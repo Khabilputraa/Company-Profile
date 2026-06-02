@@ -10,6 +10,7 @@ import FaqSection from '@/components/faq-section';
 import CtaSection from '@/components/cta-section';
 import ContactSection from '@/components/contact-section';
 import Footer from '@/components/footer';
+import WhatsAppFloat from '@/components/whatsapp-float';
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }
